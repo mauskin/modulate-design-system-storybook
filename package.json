@@ -1,0 +1,37 @@
+{
+  "name": "modulate-design-system-storybook",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-themes": "^8.6.18",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/react-vite": "^8.6.18",
+    "@storybook/test": "^8.6.18",
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "storybook": "^8.6.18",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "@eugene-arutyunov/modulate-design-system": "github:Eugene-Arutyunov/modulate-design-system#a32cccccce0040ddba07191ef4a850aa88683c08",
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.8.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "tailwind-merge": "^3.5.0"
+  }
+}

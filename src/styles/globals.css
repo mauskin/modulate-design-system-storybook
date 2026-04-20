@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* DS tokens (light-mode / dark-mode classes). */
+@import "@eugene-arutyunov/modulate-design-system/colors";
+@import "@eugene-arutyunov/modulate-design-system/typography";
+@import "@eugene-arutyunov/modulate-design-system/spacers";
+
+/*
+ * Local shadcn adapter: maps DS tokens to shadcn CSS variables.
+ * TODO: remove once DS ships @eugene-arutyunov/modulate-design-system/shadcn.
+ */
+:root,
+.light-mode {
+  --background: var(--m__background-color);
+  --foreground: var(--m__text-color);
+  --card: var(--m__bg-surface-color);
+  --card-foreground: var(--m__text-color);
+  --popover: var(--m__bg-surface-color);
+  --popover-foreground: var(--m__text-color);
+  --primary: var(--m__bg-accent-color);
+  --primary-foreground: var(--m__text-inverted-color);
+  --secondary: var(--m__bg-surface-color);
+  --secondary-foreground: var(--m__text-color);
+  --muted: var(--m__bg-surface-color);
+  --muted-foreground: var(--m__text-caption-color);
+  --accent: var(--m__code-accent-color);
+  --accent-foreground: var(--m__text-inverted-color);
+  --destructive: var(--m__ui-error-color);
+  --destructive-foreground: var(--m__text-inverted-color);
+  --border: var(--m__ui-border-color);
+  --input: var(--m__ui-border-color);
+  --ring: var(--m__text-hover-color);
+  --radius: 0.5rem;
+}
+
+/* addon-themes flips this class on the preview root. */
+@custom-variant dark (&:where(.dark-mode, .dark-mode *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--m__font-family, system-ui, sans-serif);
+}
