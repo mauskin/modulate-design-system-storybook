@@ -5,32 +5,42 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  [
+    "inline-flex items-baseline justify-center",
+    "gap-[0.3rem]",
+    "font-[inherit] cursor-pointer no-underline",
+    "disabled:pointer-events-none disabled:opacity-50",
+    "[transition:background-color_var(--m__unhover-transition-duration)_var(--m__transition-easing),color_var(--m__unhover-transition-duration)_var(--m__transition-easing),border-color_var(--m__unhover-transition-duration)_var(--m__transition-easing)]",
+    "hover:[transition-duration:var(--m__hover-transition-duration)]",
+    "active:[transition-duration:var(--m__hover-transition-duration)]",
+  ].join(" "),
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        primary: [
+          "bg-[var(--m__bg-accent-color)] text-[var(--m__text-inverted-color)] border-0",
+          "hover:bg-[var(--m__bg-hover-color)] hover:text-[var(--m__text-inverted-color)]",
+          "active:bg-[var(--m__bg-active-color)]",
+        ].join(" "),
+        secondary: [
+          "bg-transparent text-[var(--m__text-color)]",
+          "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
+          "hover:text-[var(--m__text-hover-color)]",
+          "active:text-[var(--m__text-active-color)]",
+        ].join(" "),
+        danger: [
+          "bg-transparent text-[var(--m__ui-error-color)]",
+          "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
+          "hover:border-[color-mix(in_srgb,currentColor_50%,transparent)]",
+          "active:bg-[color-mix(in_srgb,var(--m__ui-error-color)_20%,transparent)]",
+        ].join(" "),
       },
       size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
+        default: "[padding:var(--m__button-padding)] rounded-[var(--m__radius-m)]",
+        compact: "[padding:var(--m__button-compact-padding)] rounded-[var(--m__radius-s)]",
       },
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+    defaultVariants: { variant: "primary", size: "default" },
   }
 );
 
@@ -45,8 +55,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       />
     );
@@ -54,4 +64,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+/*
+ * Applied directly to an <svg> inside a Button — mirrors DS `.m__button__icon`.
+ * DS places the icon before the text and sizes it to 1lh.
+ */
+const buttonIconClasses =
+  "relative block w-[1lh] h-[1lh] shrink-0 overflow-hidden self-end";
+
+export { Button, buttonIconClasses, buttonVariants };

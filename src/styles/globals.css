@@ -1,68 +1,48 @@
 @import "tailwindcss";
-
-/* DS tokens (light-mode / dark-mode classes). */
-@import "@eugene-arutyunov/modulate-design-system/colors";
-@import "@eugene-arutyunov/modulate-design-system/typography";
-@import "@eugene-arutyunov/modulate-design-system/spacers";
+@import "@eugene-arutyunov/modulate-design-system";
+@import "@eugene-arutyunov/modulate-design-system/shadcn";
 
 /*
- * Local shadcn adapter: maps DS tokens to shadcn CSS variables.
- * TODO: remove once DS ships @eugene-arutyunov/modulate-design-system/shadcn.
+ * DS base rules replicated locally.
+ * Source of truth: modulate-design-system/src/styles/service/base.css
+ * Not yet published to DS dist/. Once it is, replace this block with an import.
+ * Fonts vendored from modulate-design-system/src/assets/fonts/ into public/fonts/.
  */
-:root,
-.light-mode {
-  --background: var(--m__background-color);
-  --foreground: var(--m__text-color);
-  --card: var(--m__bg-surface-color);
-  --card-foreground: var(--m__text-color);
-  --popover: var(--m__bg-surface-color);
-  --popover-foreground: var(--m__text-color);
-  --primary: var(--m__bg-accent-color);
-  --primary-foreground: var(--m__text-inverted-color);
-  --secondary: var(--m__bg-surface-color);
-  --secondary-foreground: var(--m__text-color);
-  --muted: var(--m__bg-surface-color);
-  --muted-foreground: var(--m__text-caption-color);
-  --accent: var(--m__code-accent-color);
-  --accent-foreground: var(--m__text-inverted-color);
-  --destructive: var(--m__ui-error-color);
-  --destructive-foreground: var(--m__text-inverted-color);
-  --border: var(--m__ui-border-color);
-  --input: var(--m__ui-border-color);
-  --ring: var(--m__text-hover-color);
-  --radius: 0.5rem;
+@font-face {
+  font-family: "Inter";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
 }
 
-/* addon-themes flips this class on the preview root. */
-@custom-variant dark (&:where(.dark-mode, .dark-mode *));
+@font-face {
+  font-family: "Inter";
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+:root {
+  font-size: 125%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--m__font-family, system-ui, sans-serif);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: var(--m__font-weight-regular);
+  line-height: var(--m__line-height-base);
+  color: var(--m__text-color);
+  background-color: var(--m__background-color);
 }
