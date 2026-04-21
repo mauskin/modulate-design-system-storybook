@@ -24,25 +24,27 @@
   src: url("/fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
 }
 
-:root {
-  font-size: 125%;
-}
+@layer base {
+  :root {
+    font-size: 125%;
+  }
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-}
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+  }
 
-body {
-  font-family: "Inter", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-weight: var(--m__font-weight-regular);
-  line-height: var(--m__line-height-base);
-  color: var(--m__text-color);
-  background-color: var(--m__background-color);
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-weight: var(--m__font-weight-regular);
+    line-height: var(--m__line-height-base);
+    color: var(--m__text-color);
+    background-color: var(--m__background-color);
+  }
 }

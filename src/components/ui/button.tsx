@@ -8,39 +8,60 @@ const buttonVariants = cva(
   [
     "inline-flex items-baseline justify-center",
     "gap-[0.3rem]",
-    "font-[inherit] cursor-pointer no-underline",
+    "[font:inherit] cursor-pointer",
     "disabled:pointer-events-none disabled:opacity-50",
-    "[transition:background-color_var(--m__unhover-transition-duration)_var(--m__transition-easing),color_var(--m__unhover-transition-duration)_var(--m__transition-easing),border-color_var(--m__unhover-transition-duration)_var(--m__transition-easing)]",
+    "[transition:background-color_var(--m__unhover-transition-duration)_var(--m__transition-easing),color_var(--m__unhover-transition-duration)_var(--m__transition-easing),border-color_var(--m__unhover-transition-duration)_var(--m__transition-easing),text-decoration-color_var(--m__unhover-transition-duration)_var(--m__transition-easing)]",
     "hover:[transition-duration:var(--m__hover-transition-duration)]",
     "active:[transition-duration:var(--m__hover-transition-duration)]",
   ].join(" "),
   {
     variants: {
       variant: {
-        primary: [
-          "bg-[var(--m__bg-accent-color)] text-[var(--m__text-inverted-color)] border-0",
-          "hover:bg-[var(--m__bg-hover-color)] hover:text-[var(--m__text-inverted-color)]",
-          "active:bg-[var(--m__bg-active-color)]",
+        default: [
+          "bg-primary text-primary-foreground border-0 no-underline",
+          "hover:bg-[var(--primary-hover)] hover:text-primary-foreground",
+          "active:bg-[var(--primary-active)]",
         ].join(" "),
         secondary: [
-          "bg-transparent text-[var(--m__text-color)]",
-          "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
-          "hover:text-[var(--m__text-hover-color)]",
-          "active:text-[var(--m__text-active-color)]",
+          "bg-secondary text-secondary-foreground border-0 no-underline",
+          "hover:bg-[var(--secondary-hover)]",
+          "active:bg-[var(--secondary-active)]",
         ].join(" "),
-        danger: [
-          "bg-transparent text-[var(--m__ui-error-color)]",
+        outline: [
+          "bg-transparent text-foreground no-underline",
+          "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
+          "hover:text-[var(--outline-hover)]",
+          "active:text-[var(--outline-active)]",
+        ].join(" "),
+        destructive: [
+          "bg-transparent text-destructive no-underline",
           "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
           "hover:border-[color-mix(in_srgb,currentColor_50%,transparent)]",
-          "active:bg-[color-mix(in_srgb,var(--m__ui-error-color)_20%,transparent)]",
+          "active:bg-[var(--destructive-active)]",
+        ].join(" "),
+        ghost: [
+          "bg-transparent text-foreground border-0 no-underline",
+          "hover:bg-[var(--ghost-hover-bg)] hover:text-[var(--ghost-hover-fg)]",
+          "active:bg-[var(--ghost-hover-bg)]",
+        ].join(" "),
+        link: [
+          "bg-transparent border-0 text-[var(--link-color)]",
+          "underline [text-decoration-thickness:1px] [text-underline-offset:0.2em] [text-decoration-skip-ink:none]",
+          "decoration-[var(--link-decoration)]",
+          "hover:text-[var(--link-hover-color)] hover:decoration-[var(--link-decoration-hover)]",
         ].join(" "),
       },
       size: {
-        default: "[padding:var(--m__button-padding)] rounded-[var(--m__radius-m)]",
-        compact: "[padding:var(--m__button-compact-padding)] rounded-[var(--m__radius-s)]",
+        default: "[padding:var(--button-padding)] rounded-button",
+        sm: "[padding:var(--button-compact-padding)] rounded-button-sm [&_svg]:hidden",
+        lg: "[padding:var(--button-lg-padding)] rounded-button",
+        icon: "[padding:var(--button-icon-padding)] aspect-square rounded-button",
       },
     },
-    defaultVariants: { variant: "primary", size: "default" },
+    compoundVariants: [
+      { variant: "link", className: "p-0 aspect-auto" },
+    ],
+    defaultVariants: { variant: "default", size: "default" },
   }
 );
 
