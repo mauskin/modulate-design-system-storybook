@@ -6,14 +6,14 @@
  * DS base rules replicated locally.
  * Source of truth: modulate-design-system/src/styles/service/base.css
  * Not yet published to DS dist/. Once it is, replace this block with an import.
- * Fonts vendored from modulate-design-system/src/assets/fonts/ into public/fonts/.
+ * Fonts vendored from modulate-design-system/src/assets/fonts/ into src/styles/fonts/.
  */
 @font-face {
   font-family: "Inter";
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
-  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("./fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
 }
 
 @font-face {
@@ -21,7 +21,7 @@
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
-  src: url("/fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("./fonts/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
 }
 
 @layer base {

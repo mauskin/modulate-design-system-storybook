@@ -3,7 +3,7 @@ import { Button, buttonIconClasses } from "./button";
 
 const Icon = ({ name }: { name: string }) => (
   <svg className={buttonIconClasses} aria-hidden="true">
-    <use href={`/ds-icons-sprite.svg#${name}`} />
+    <use href={`${import.meta.env.BASE_URL}ds-icons-sprite.svg#${name}`} />
   </svg>
 );
 

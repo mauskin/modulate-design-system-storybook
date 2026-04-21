@@ -14,6 +14,13 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
+  viteFinal: async (config) => ({
+    ...config,
+    base:
+      process.env.NODE_ENV === "production"
+        ? "/modulate-design-system-storybook/"
+        : "/",
+  }),
 };
 
 export default config;
