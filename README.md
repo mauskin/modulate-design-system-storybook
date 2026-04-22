@@ -41,11 +41,31 @@ To bump: set a new SHA in `package.json`, `npm install`.
 2. `src/styles/globals.css` imports both and replicates DS base rules that aren't in `dist/` yet (see TODO).
 3. Light/dark: toggle `.light`/`.light-mode` or `.dark`/`.dark-mode` on any ancestor; Storybook's theme toolbar does this.
 
+## Components
+
+### Button
+
+Variants: `default` (primary), `outline`, `danger`, `success`.
+Sizes: `xs`, `s`, `m`. `L` / `XL` TBD.
+
+```tsx
+<Button variant="default" size="m">Save changes</Button>
+```
+
+Button renders a `<button>` only. For link-styled-as-button, use `<Link asButton>`.
+
+### Link
+
+Renders an `<a>`. Pass `asButton` to apply button styling.
+
+```tsx
+<Link href="/docs">View documentation</Link>
+<Link href="/start" asButton>Get started</Link>
+```
+
 ## TODO
 
-- **Confirm `lg` / `icon` button padding.** `--button-lg-padding` (`0.75rem 1.5rem`) and `--button-icon-padding` (`0.5rem`) in DS `shadcn.css` are invented — no DS equivalent. Pending design review; propose DS tokens `--m__button-large-padding` and `--m__button-icon-padding` once confirmed.
-- **Confirm `secondary` / `ghost` hover tokens.** `--secondary-hover/active` derived via `color-mix(... var(--foreground))`; `--ghost-hover-bg` reuses surface. No DS precedent for these states on filled-surface or ghost buttons — confirm with design.
+- **L / XL button sizes.** Pending DS definition.
 - **Confirm token mapping** (`--ring`, `--accent`, `--primary`) with the design team.
-- **Focus-visible ring on Button.** DS `button.css` defines no focus state. Propose a DS PR adding `--m__focus-ring-color` (and optionally `--m__focus-ring-width`), then enable `focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2` in `button.tsx`. Accessibility gap until this lands.
 - **Disabled state on Button.** DS CSS has no `:disabled` rule. Currently uses shadcn's `opacity-50 pointer-events-none` default. Confirm with design; if DS defines an explicit style, switch.
 - **Icon styling class.** Button icons use the exported `buttonIconClasses` string applied directly to any `<svg>` (matching DS `.m__button__icon`). Consider exposing these rules as a proper CSS class (e.g. `.m__button__icon` or `.button-icon`) in DS `shadcn.css` so consumers don't need to import a JS constant.

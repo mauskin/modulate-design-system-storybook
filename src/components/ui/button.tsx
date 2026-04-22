@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
@@ -22,66 +21,47 @@ const buttonVariants = cva(
           "hover:bg-[var(--primary-hover)] hover:text-primary-foreground",
           "active:bg-[var(--primary-active)]",
         ].join(" "),
-        secondary: [
-          "bg-secondary text-secondary-foreground border-0 no-underline",
-          "hover:bg-[var(--secondary-hover)]",
-          "active:bg-[var(--secondary-active)]",
-        ].join(" "),
         outline: [
           "bg-transparent text-foreground no-underline",
           "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
           "hover:text-[var(--outline-hover)]",
           "active:text-[var(--outline-active)]",
         ].join(" "),
-        destructive: [
+        danger: [
           "bg-transparent text-destructive no-underline",
           "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
           "hover:border-[color-mix(in_srgb,currentColor_50%,transparent)]",
           "active:bg-[var(--destructive-active)]",
         ].join(" "),
-        ghost: [
-          "bg-transparent text-foreground border-0 no-underline",
-          "hover:bg-[var(--ghost-hover-bg)] hover:text-[var(--ghost-hover-fg)]",
-          "active:bg-[var(--ghost-hover-bg)]",
-        ].join(" "),
-        link: [
-          "bg-transparent border-0 text-[var(--link-color)]",
-          "underline [text-decoration-thickness:1px] [text-underline-offset:0.2em] [text-decoration-skip-ink:none]",
-          "decoration-[var(--link-decoration)]",
-          "hover:text-[var(--link-hover-color)] hover:decoration-[var(--link-decoration-hover)]",
+        success: [
+          "bg-transparent text-[var(--success)] no-underline",
+          "border border-[color-mix(in_srgb,currentColor_30%,transparent)]",
+          "hover:border-[color-mix(in_srgb,currentColor_50%,transparent)]",
+          "active:bg-[var(--success-active)]",
         ].join(" "),
       },
       size: {
-        default: "[padding:var(--button-padding)] rounded-button",
-        sm: "[padding:var(--button-compact-padding)] rounded-button-sm [&_svg]:hidden",
-        lg: "[padding:var(--button-lg-padding)] rounded-button",
-        icon: "[padding:var(--button-icon-padding)] aspect-square rounded-button",
+        xs: "[padding:var(--button-xs-padding)] rounded-button-sm [&_svg]:hidden",
+        s:  "[padding:var(--button-s-padding)] rounded-button-sm",
+        m:  "[padding:var(--button-m-padding)] rounded-button",
       },
     },
-    compoundVariants: [
-      { variant: "link", className: "p-0 aspect-auto" },
-    ],
-    defaultVariants: { variant: "default", size: "default" },
+    defaultVariants: { variant: "default", size: "m" },
   }
 );
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
+    VariantProps<typeof buttonVariants> {}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        ref={ref}
-        className={cn(buttonVariants({ variant, size, className }))}
-        {...props}
-      />
-    );
-  }
+  ({ className, variant, size, ...props }, ref) => (
+    <button
+      ref={ref}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
 );
 Button.displayName = "Button";
 
