@@ -21,6 +21,11 @@ const buttonVariants = cva(
           "hover:bg-[var(--primary-hover)] hover:text-primary-foreground",
           "active:bg-[var(--primary-active)]",
         ].join(" "),
+        secondary: [
+          "bg-[color-mix(in_srgb,currentColor_10%,transparent)] text-foreground border-0 no-underline",
+          "hover:bg-[color-mix(in_srgb,currentColor_15%,transparent)] hover:text-[var(--primary-hover)]",
+          "active:bg-[color-mix(in_srgb,currentColor_25%,transparent)]",
+        ].join(" "),
         outline: [
           "bg-transparent text-foreground no-underline",
           "border border-[color-mix(in_srgb,currentColor_25%,transparent)]",
@@ -42,7 +47,7 @@ const buttonVariants = cva(
       },
       size: {
         xs: "[padding:var(--button-xs-padding)] rounded-button-sm [&_svg]:hidden",
-        s:  "[padding:var(--button-s-padding)] rounded-button-sm",
+        s:  "[padding:var(--button-s-padding)] rounded-button-sm [&_svg]:hidden",
         m:  "[padding:var(--button-m-padding)] rounded-button",
       },
     },
